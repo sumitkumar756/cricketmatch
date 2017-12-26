@@ -1,0 +1,1 @@
+This application is console base application to picturize the cricket match.
