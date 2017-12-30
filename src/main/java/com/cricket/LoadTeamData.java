@@ -5,7 +5,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.cricket.entity.Player;
 import com.cricket.entity.PlayerType;
@@ -20,7 +22,7 @@ public class LoadTeamData {
 		BufferedReader reader = new BufferedReader(new FileReader("teams.csv"));
 		String line = "";
 		
-		List<Player> playerList = new ArrayList<Player>();
+		Set<Player> playerList = new HashSet<Player>();
 		Team team  = new Team();	
 		while ((line = reader.readLine()) != null) {
 			String[] teamData = line.split(",");
@@ -38,7 +40,7 @@ public class LoadTeamData {
 				teams.put(player.getCountry(), team);
 				
 				team = new Team();
-				playerList = new ArrayList<Player>();
+				playerList = new HashSet<Player>();
 			}else{
 				playerList.add(player);
 				
