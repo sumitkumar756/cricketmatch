@@ -12,8 +12,9 @@ import com.cricket.entity.Toss;
 public class PlayMatch {
 	
 
-	public void startMatch(Set<String> teamNames, HashMap<String, Team> teams,int overs) {
+	public void startMatch(HashMap<String, Team> teams,int overs) {
 		
+		Set<String> teamNames = teams.keySet();
 		System.out.println(String.format("%-15s", "Tossing"));
 		String tossWonTeam = teamNames.parallelStream().findAny().get();
 		System.out.println(String.format("%-15s", tossWonTeam+" WON the toss"));
@@ -27,7 +28,6 @@ public class PlayMatch {
 			innings.battingTeam = teams.get(teamNames.parallelStream().filter(name -> !name.equals(tossWonTeam)).findFirst().get());
 			innings.bowlingTeam = teams.get(tossWonTeam);
 		}
-		
 		
 		innings.startInning(overs);
 		

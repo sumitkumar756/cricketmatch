@@ -28,21 +28,21 @@ public class MatchRunner {
 		}
 		System.out.print(String.format("%-15s", "Enter second team :"));
 		String team2 = reader.readLine();
-		while (!teamNames.contains(team2)) {
-			System.out.print(String.format("team did not participate in tournament . Please enter again"));
+		while (!teamNames.contains(team2) || team2.equals(team1)) {
+			System.out.print(String.format("team did not participate in tournament or team already selected. Please enter again"));
 			System.out.print(String.format("%-15s", "Enter second team :"));
 			team2 = reader.readLine();
 		}
 		
 		MatchUtility utility = new MatchUtility();
-		utility.showplayers(team1,team2,teams);
+		utility.showplayers(teams);
 		
 		System.out.print(String.format("%-15s", "Enter overs :"));
 		int overs = Integer.parseInt(reader.readLine());
 		
 		
 		PlayMatch playMatch = new PlayMatch();
-		playMatch.startMatch(teamNames,teams,overs);
+		playMatch.startMatch(teams,overs);
 			
 
 	}

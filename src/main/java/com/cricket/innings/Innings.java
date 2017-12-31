@@ -2,6 +2,7 @@ package com.cricket.innings;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import com.cricket.entity.Over;
 import com.cricket.entity.Player;
@@ -12,34 +13,39 @@ public class Innings {
 
 	public Team bowlingTeam;
 	public Team battingTeam;
-	
+
 	// No Ball -3,Wicket -1,Wide ball -2
 	public List<Integer> boundries = Arrays.asList(-3, -2, -1, 0, 1, 2, 3, 4, 5, 6);
-	public Player currentBowler;
-	public Player bastmanOnStrike;
-	public Player bastmanOnNonStrike;
+	private Player currentBowler;
+	private Player bastmanOnStrike;
+	private Player bastmanOnNonStrike;
 
 	public void startInning(int overs) {
 
 		// first inning
-		System.out.println("batting team:"+battingTeam.players);
-		System.out.println("bowling team:"+bowlingTeam.players);
-		int firstTeamScore = playInning(overs);
-         
+		playInning(overs);
+		System.out.println("\n"+battingTeam.getCountry()+ "innings has finished \n");
+		
+		
 		// Start second inning
 		Team team = this.battingTeam;
 		this.battingTeam = this.bowlingTeam;
 		this.bowlingTeam = team;
+
+		playInning(overs);
+		System.out.println("\n"+battingTeam.getCountry()+ "innings has finished \n");
 		
-
-		int secondTeamScore = playInning(overs);
-
+		
+		System.out.println(battingTeam.getCountry()+ " scored "+battingTeam.getTotalScore()+ " for "+battingTeam.getWicketsDown()+ " wickets in "+overs+" overs \n \n");
+		
+		System.out.println(bowlingTeam.getCountry()+ " scored "+bowlingTeam.getTotalScore()+ " for "+bowlingTeam.getWicketsDown()+ " wickets in "+overs+" overs");
 	}
 
-	private int playInning(int totalOvers) {
+	private void playInning(int totalOvers) {
 
 		int totalRun = 0;
 		int runningOver = 1;
+		Random random = new Random();
 		while (runningOver <= totalOvers) {
 			int bowls = 1;
 			currentBowler = bowlingTeam.getPlayers().parallelStream()
@@ -72,18 +78,20 @@ public class Innings {
 											.findAny().get()));
 				}
 
-				int runOnBall = boundries.parallelStream().parallel().findAny().get();
+				int runOnBall = boundries.get(random.nextInt(boundries.size()));
 				if (runOnBall == -2 || runOnBall == -3) {
 					runOnBall++;
-					System.out.println(Over.values()[bowls - 1] + " ball  1 extra run");
+					System.out.println(Over.values()[bowls - 1] + " ball     1 extra run");
 				} else {
 					if (runOnBall == -1) {
 						System.out.println(Over.values()[bowls - 1] + " ball     " + bastmanOnStrike.name + " caught");
 						bastmanOnStrike.out = true;
-						battingTeam.players.add(bastmanOnStrike);
+						battingTeam.getPlayers().add(bastmanOnStrike);
 						bastmanOnStrike = null;
 						battingTeam.setWicketsDown(battingTeam.getWicketsDown() + 1);
 					} else {
+						if (runOnBall == 5)
+							runOnBall = 4;
 						System.out.println(Over.values()[bowls - 1] + " ball     " + bastmanOnStrike.name + " hit "
 								+ runOnBall + " run");
 						bastmanOnStrike.setRun(bastmanOnStrike.getRun() + runOnBall);
@@ -94,6 +102,13 @@ public class Innings {
 						}
 					}
 					bowls++;
+					if (bowls > 6) {
+						if (runOnBall % 2 != 0) {
+							Player newPlayer = bastmanOnNonStrike;
+							bastmanOnNonStrike = bastmanOnStrike;
+							bastmanOnStrike = newPlayer;
+						}
+					}
 				}
 
 				totalRun += runOnBall;
@@ -107,8 +122,8 @@ public class Innings {
 		System.out.println("total score" + totalRun);
 		bastmanOnStrike = null;
 		bastmanOnNonStrike = null;
-		return totalRun;
-		
+		battingTeam.setTotalScore(totalRun);
+
 	}
 
 }

@@ -4,17 +4,22 @@ import java.util.Set;
 
 public class Team {
 	
+	private String country;
+	private Set<Player> players;
+	private int score;
+	private int wicketsDown;
 	
-	public Set<Player> players;
-	public int totalScore;
-	public boolean matchWinner = false;
-	public int wicketsDown;
-	
-	public int getTotalScore() {
-		return totalScore;
+	public String getCountry() {
+		return country;
 	}
-	public void setTotalScore(int totalScore) {
-		this.totalScore = totalScore;
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	public int getTotalScore() {
+		return score;
+	}
+	public void setTotalScore(int score) {
+		this.score = score;
 	}
 	
 	public int getWicketsDown() {
@@ -29,20 +34,6 @@ public class Team {
 	public void setPlayers(Set<Player> players) {
 		this.players = players;
 	}
-	public int getScore() {
-		return totalScore;
-	}
-	public void setScore(int totalScore) {
-		this.totalScore = totalScore;
-	}
-	public boolean isMatchWinner() {
-		return matchWinner;
-	}
-	public void setMatchWinner(boolean matchWinner) {
-		this.matchWinner = matchWinner;
-	}
-	
-	
 	
 
 }

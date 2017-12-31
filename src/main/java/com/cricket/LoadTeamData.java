@@ -27,6 +27,11 @@ public class LoadTeamData {
 			Player player = new Player();
 			player.setCountry(teamData[0]);
 			player.setName(teamData[1]);
+			
+			if(team.getCountry() == null){
+				team.setCountry(teamData[0]);
+			}
+			
 			for (PlayerType pl : PlayerType.values()) {
 				if (pl.getPlayerType().equals(teamData[2])) {
 					player.setType(pl);
@@ -34,7 +39,7 @@ public class LoadTeamData {
 			}
 			if(playerList.size() == 10){
 				playerList.add(player);
-				team.players = playerList;
+				team.setPlayers(playerList);
 				teams.put(player.getCountry(), team);
 				
 				team = new Team();
