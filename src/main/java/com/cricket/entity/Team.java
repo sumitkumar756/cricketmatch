@@ -1,23 +1,15 @@
 package com.cricket.entity;
 
-import java.util.List;
 import java.util.Set;
 
 public class Team {
 	
-	public String country;
+	
 	public Set<Player> players;
 	public int totalScore;
 	public boolean matchWinner = false;
 	public int wicketsDown;
-	public int totalOvers;
 	
-	public String getCountry() {
-		return country;
-	}
-	public void setCountry(String country) {
-		this.country = country;
-	}
 	public int getTotalScore() {
 		return totalScore;
 	}
@@ -25,12 +17,6 @@ public class Team {
 		this.totalScore = totalScore;
 	}
 	
-	public int getTotalOvers() {
-		return totalOvers;
-	}
-	public void setTotalOvers(int totalOvers) {
-		this.totalOvers = totalOvers;
-	}
 	public int getWicketsDown() {
 		return wicketsDown;
 	}

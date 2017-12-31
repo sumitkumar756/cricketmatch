@@ -6,12 +6,10 @@ import java.util.Set;
 
 import com.cricket.entity.Team;
 import com.cricket.entity.Toss;
-import com.sun.xml.internal.bind.v2.runtime.Name;
 
 
 
 public class PlayMatch {
-	
 	
 
 	public void startMatch(Set<String> teamNames, HashMap<String, Team> teams,int overs) {
@@ -30,7 +28,7 @@ public class PlayMatch {
 			innings.bowlingTeam = teams.get(tossWonTeam);
 		}
 		
-		innings.battingTeam.wicketsDown =0;
+		
 		innings.startInning(overs);
 		
 		
