@@ -39,6 +39,21 @@ public class Innings {
 		System.out.println(battingTeam.getCountry()+ " scored "+battingTeam.getTotalScore()+ " for "+battingTeam.getWicketsDown()+ " wickets in "+overs+" overs \n \n");
 		
 		System.out.println(bowlingTeam.getCountry()+ " scored "+bowlingTeam.getTotalScore()+ " for "+bowlingTeam.getWicketsDown()+ " wickets in "+overs+" overs");
+		
+		if(battingTeam.getTotalScore() > bowlingTeam.getTotalScore()){
+			if(battingTeam.getWicketsDown() < bowlingTeam.getWicketsDown()){
+				System.out.println(battingTeam.getCountry()+" beat "+bowlingTeam.getCountry()+ " by "+(bowlingTeam.getWicketsDown()-battingTeam.getWicketsDown())+" wickets");
+			}else{
+				System.out.println(battingTeam.getCountry()+" beat "+bowlingTeam.getCountry()+ " by "+(battingTeam.getTotalScore()-bowlingTeam.getTotalScore())+" run");
+			}
+		}else{
+			if(battingTeam.getWicketsDown() > bowlingTeam.getWicketsDown()){
+				System.out.println(bowlingTeam.getCountry()+" beat "+battingTeam.getCountry()+ " by "+(battingTeam.getWicketsDown()-bowlingTeam.getWicketsDown())+" wickets");
+			}else{
+				System.out.println(bowlingTeam.getCountry()+" beat "+battingTeam.getCountry()+ " by "+(bowlingTeam.getTotalScore()-battingTeam.getTotalScore())+" run");
+			}
+		}
+		
 	}
 
 	private void playInning(int totalOvers) {
