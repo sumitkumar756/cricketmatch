@@ -16,6 +16,8 @@ public class MatchRunner {
 		LoadTeamData loadTeamData = new LoadTeamData();
 		HashMap<String, Team> teams = loadTeamData.loadTeamsData();
 		Set<String> teamNames = teams.keySet();
+		for (String nammes : teamNames)
+			System.out.println(nammes);
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		System.out.print(String.format("%-15s", "Enter first team :"));
 		String team1 = reader.readLine();
