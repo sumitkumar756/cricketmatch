@@ -8,7 +8,7 @@ import com.cricket.entity.Over;
 import com.cricket.entity.Player;
 import com.cricket.entity.PlayerType;
 import com.cricket.entity.Team;
-// changes after hard reset
+
 public class Innings {
 
 	public Team bowlingTeam;
@@ -24,7 +24,7 @@ public class Innings {
 
 		// first inning
 		playInning(overs);
-		System.out.println("\n"+battingTeam.getCountry()+ "innings has finished \n");
+		System.out.println("\n"+battingTeam.getCountry()+ " innings has finished \n");
 		
 		
 		// Start second inning
@@ -33,7 +33,7 @@ public class Innings {
 		this.bowlingTeam = team;
 
 		playInning(overs);
-		System.out.println("\n"+battingTeam.getCountry()+ "innings has finished \n");
+		System.out.println("\n"+battingTeam.getCountry()+ " innings has finished \n");
 		
 		
 		System.out.println(battingTeam.getCountry()+ " scored "+battingTeam.getTotalScore()+ " for "+battingTeam.getWicketsDown()+ " wickets in "+overs+" overs \n \n");
