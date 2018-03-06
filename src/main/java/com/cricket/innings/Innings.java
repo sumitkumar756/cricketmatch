@@ -8,7 +8,7 @@ import com.cricket.entity.Over;
 import com.cricket.entity.Player;
 import com.cricket.entity.PlayerType;
 import com.cricket.entity.Team;
-
+// changes after hard reset
 public class Innings {
 
 	public Team bowlingTeam;
